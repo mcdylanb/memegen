@@ -32,27 +32,27 @@ const App = () => {
   }, []);
 
   const handleSubmit = async (e) => {
-    // try {
-    e.preventDefault();
-    const randNum = Math.floor(Math.random() * picture.length);
-    setDummy(picture[randNum].url);
+    try {
+      e.preventDefault();
+      const randNum = Math.floor(Math.random() * picture.length);
+      setDummy(picture[randNum].url);
 
-    const params = {
-      template_id: picture[randNum].id,
-      text0: topText,
-      text1: bottomText,
-      username: process.env.REACT_APP_IMGFLIP_USERNAME,
-      password: process.env.REACT_APP_IMGFLIP_PASSWORD,
-    };
-    const response = await fetch(
-      `https://api.imgflip.com/caption_image${objectToQueryParam(params)}`
-    );
-    const json = await response.json();
-    const magic = json.data.url;
-    setNaniiii(magic);
+      const params = {
+        template_id: picture[randNum].id,
+        text0: topText,
+        text1: bottomText,
+        username: process.env.REACT_APP_IMGFLIP_USERNAME,
+        password: process.env.REACT_APP_IMGFLIP_PASSWORD,
+      };
+      const response = await fetch(
+        `https://api.imgflip.com/caption_image${objectToQueryParam(params)}`
+      );
+      const json = await response.json();
+      const magic = json.data.url;
+      setNaniiii(magic);
 
-    console.log("why", params);
-    // } catch (error) {}
+      console.log("why", params);
+    } catch (error) {}
   };
 
   function save2() {
